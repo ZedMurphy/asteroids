@@ -5,7 +5,9 @@
 # to run the game: python3 main.py
 
 import pygame
+import sys
 from constants import *
+from circleshape import *
 from player import *
 from asteroid import *
 from asteroidfield import *
@@ -40,6 +42,9 @@ def main():
         for shape in drawable:
             shape.draw(screen)
         updateable.update(dt)
+        for stone in asteroids:
+            if stone.detect_collision(player):
+                sys.exit("Game over!")
         pygame.display.flip()
         time = clock.tick(60)
         dt = time/1000
