@@ -50,6 +50,9 @@ def main():
         for stone in asteroids:
             if stone.detect_collision(player):
                 sys.exit("Game over!")
+            for shot in shots:
+                if shot.detect_collision(stone):
+                    stone.split()
         pygame.display.flip()
         time = clock.tick(60)
         dt = time/1000
